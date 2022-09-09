@@ -1,9 +1,25 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE gbp>
+<gbp>
 <head>
-
+<title>Global Currency Exchanger</title>
 </head>
 <body>
-
+  <form id="userInput">
+    <label for="usd">How much USD would you like to convert?</label>
+    <input id="usd" name="usd" type="number" min="0.01" step="0.01">
+    <button class="btn-success" type="submit">Convert!</button>
+  </form>
+  <form id="currencies">
+    <p>Select what currency you would like to convert it to</p>
+    <input type="radio" id="gbp" name="currency" value="gbp">
+    <label for="gbp">gbp</label>
+    <input type="radio" id="aud" name="currency" value="aud">
+    <label for="aud">aud</label>
+    <input type="radio" id="eur" name="currency" value="eur">
+    <label for="eur">eur</label>
+  </form>
+  <div class="outputs" id="outputs">
+    <p>Hey kid</p>
+  </div>
 </body>
-</html>
+</gbp>
