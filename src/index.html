@@ -9,15 +9,21 @@
     <input id="usd" name="usd" type="number" min="0.01" step="0.01">
     <button class="btn-success" type="submit">Convert!</button>
   </form>
-  <form id="currencies">
-    <p>Now, select what currency you would like to convert it to</p>
-    <input type="radio" id="gbp" name="currency" value="gbp">
-    <label for="gbp">gbp</label>
-    <input type="radio" id="aud" name="currency" value="aud">
-    <label for="aud">aud</label>
-    <input type="radio" id="eur" name="currency" value="eur">
-    <label for="eur">eur</label>
-  </form>
-  <div class="outputs" id="outputs"></div>
+  <div class="hidden" id="currencyForm">
+    <form id="currencies">
+      <p>Now, select what currency you would like to convert it to</p>
+      <input type="radio" id="GBP" name="currency" value="GBP">
+      <label for="GBP">GBP</label>
+      <input type="radio" id="AUD" name="currency" value="AUD">
+      <label for="AUD">AUD</label>
+      <input type="radio" id="EUR" name="currency" value="EUR">
+      <label for="EUR">EUR</label>
+      <span id="noneinput"><input type="radio" id="none" name="currency" value="none" checked="checked">
+      <label for="none">NONE</label></span>
+    </form>
+  </div>
+  <div class="outputs" id="outputs">
+    <span id="conversion"></span>
+  </div>
 </body>
 </gbp>

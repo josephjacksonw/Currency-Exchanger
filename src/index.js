@@ -21,6 +21,7 @@ function pullCurrencies(request) {
       } else {
         printCurrencies(response, request)
       }
+      
       // console.log(response.message)
       // console.log(response.cause)
       // console.log(response.toString()) // this one will output it
@@ -54,6 +55,20 @@ function pullCurrencies(request) {
 //   document.getElementById("outputs").appendChild(p2);
 // }
 
+// function convert(e) {
+//   e.preventDefault();
+//   let currency = document.querySelector('input[name="currency"]:checked').value
+//   let p = document.createElement("p")
+//   p.innerText= currency
+  
+//   // oh shit then I guess it won't just hold that info for me will it
+//   // or I can just call it again lol
+//   // or don't call it until they hit this one
+//   // or since this is from the other function maybe its still saved?
+//   // new plan, see if currencies says anything in the handleform
+//   document.getElementById("conversion").appendChild(p);
+// }
+
 
 function printCurrencies(response, request) {
   console.log("printCurrnecies");
@@ -61,6 +76,23 @@ function printCurrencies(response, request) {
   let p = document.createElement("p");
   p.innerText = "$" + request;
   document.getElementById("outputs").appendChild(p);
+  let currency = document.querySelector('input[name="currency"]:checked').value;
+  console.log(currency)
+  if (currency === "none") {
+    let p2 = document.createElement("p");
+    p2.innerText = "API called, select a unit to convert it to";
+    document.getElementById("outputs").appendChild(p2);
+  } else {
+    let p2 = document.createElement("p");
+    let conversion = response.conversion_rates[currency]
+    p2.innerText = "Your money is equal to " + (request * conversion) + " in " + currency
+    console.log("im checking the object output")
+    console.log(response)
+    console.log(response.conversion_rates)
+    console.log(response["conversion_rates"].AED) //this one does pull AED
+    console.log(response.conversion_rates[currency]) //ok this one is it
+    document.getElementById("outputs").appendChild(p2)
+  }
 }
 
 function printError(response, request) {
@@ -75,6 +107,12 @@ function handleForm(e) {
   e.preventDefault();
   const usd = document.querySelector("#usd").value;
   pullCurrencies(usd)
+  let outputclear = document.getElementById("outputs")
+  outputclear.innerHTML = null
+ 
+  // this doesn't work so I would need to switch it to inside of the printCurrencies
+  document.getElementById("currencyForm").removeAttribute("class")
+  //document.querySelector("form#currencies").addEventListener("click", convert);
 }
 
 window.addEventListener("load", function() {
@@ -82,6 +120,12 @@ window.addEventListener("load", function() {
 });
 
 /*
+
+
+my understanding: they input and it calls the api, I need to make the second part not appear until after they submit, then it will ask them what kind of thing they want. Which means I need to create the event listener at some point in there
+
+
+
 
 So right now, they can put in a value. when they hit submit I take that number and call the api to bring up the conversion api. The error check now sends the error to the right spot along with the error code
 
