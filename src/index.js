@@ -42,18 +42,24 @@ function printError(response) {
 
 function handleForm(e) {
   e.preventDefault();
-  const usd = document.querySelector("#usd").value;
-  let outputclear = document.getElementById("outputs");
-  outputclear.innerHTML = null;
-  if (usd === "") {
-    document.getElementById("currencyForm").setAttribute("class", "hidden");
-    let p = document.createElement("p");
-    p.innerText = "Error: Please input an amount in USD";
-    document.getElementById("outputs").appendChild(p);
+  let currency = document.querySelector('input[name="currency"]:checked').value;
+  if (currency === "none"){
+    console.log("there is no thing")
   } else {
-    pullCurrencies(usd);
-    document.getElementById("currencyForm").removeAttribute("class");
+    const usd = document.querySelector("#usd").value;
+    let outputclear = document.getElementById("outputs");
+    outputclear.innerHTML = null;
+    if (usd === "") {
+      document.getElementById("currencyForm").setAttribute("class", "hidden");
+      let p = document.createElement("p");
+      p.innerText = "Error: Please input an amount in USD";
+      document.getElementById("outputs").appendChild(p);
+    } else {
+      pullCurrencies(usd);
+      document.getElementById("currencyForm").removeAttribute("class");
+    }
   }
+
 }
 
 window.addEventListener("load", function() {
