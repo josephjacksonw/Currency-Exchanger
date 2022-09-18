@@ -6,6 +6,7 @@ import CurrencyService from './CurrencyService';
 
 //Business Logic
 function pullCurrencies(request) {
+  console.log("pull request")
   CurrencyService.getExchanges()
     .then(function(response) {
       if (response.name === "Error") {
@@ -47,9 +48,11 @@ function handleForm(e) {
   let outputclear = document.getElementById("outputs");
   outputclear.innerHTML = null;
   document.getElementById("currencyForm").removeAttribute("class");
-  if (currency === "none"){
-    console.log("there is no thing")
-  }
+  // if (currency === "none"){
+  //   console.log("there is no thing")
+  // } else {
+    
+  // }
   if (usd === "") {
     console.log("no money")
     document.getElementById("currencyForm").setAttribute("class", "hidden");
@@ -57,7 +60,11 @@ function handleForm(e) {
     p.innerText = "Error: Please input an amount in USD";
     document.getElementById("outputs").appendChild(p);
   } else {
+    if (currency === "none"){
+      console.log("there is no thing")
+    } else {
     pullCurrencies(usd);
+    }
   }
 }
 

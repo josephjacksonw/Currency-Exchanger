@@ -5,3 +5,11 @@
 #noneinput {
   display: none;
 }
+
+body {
+  background-color: lightgreen;
+}
+
+.col-8 {
+  margin-top: 50px;
+}
