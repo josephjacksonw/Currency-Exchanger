@@ -23,9 +23,9 @@ function printCurrencies(response, request) {
   document.getElementById("outputs").appendChild(p);
   let currency = document.querySelector('input[name="currency"]:checked').value;
   if (currency === "none") {
-    let p2 = document.createElement("p");
-    p2.innerText = "API called, select a unit to convert it to";
-    document.getElementById("outputs").appendChild(p2);
+    // let p2 = document.createElement("p");
+    // p2.innerText = "API called, select a unit to convert it to";
+    // document.getElementById("outputs").appendChild(p2);
   } else {
     let p2 = document.createElement("p");
     let conversion = response.conversion_rates[currency];
@@ -43,23 +43,22 @@ function printError(response) {
 function handleForm(e) {
   e.preventDefault();
   let currency = document.querySelector('input[name="currency"]:checked').value;
+  const usd = document.querySelector("#usd").value;
+  let outputclear = document.getElementById("outputs");
+  outputclear.innerHTML = null;
+  document.getElementById("currencyForm").removeAttribute("class");
   if (currency === "none"){
     console.log("there is no thing")
-  } else {
-    const usd = document.querySelector("#usd").value;
-    let outputclear = document.getElementById("outputs");
-    outputclear.innerHTML = null;
-    if (usd === "") {
-      document.getElementById("currencyForm").setAttribute("class", "hidden");
-      let p = document.createElement("p");
-      p.innerText = "Error: Please input an amount in USD";
-      document.getElementById("outputs").appendChild(p);
-    } else {
-      pullCurrencies(usd);
-      document.getElementById("currencyForm").removeAttribute("class");
-    }
   }
-
+  if (usd === "") {
+    console.log("no money")
+    document.getElementById("currencyForm").setAttribute("class", "hidden");
+    let p = document.createElement("p");
+    p.innerText = "Error: Please input an amount in USD";
+    document.getElementById("outputs").appendChild(p);
+  } else {
+    pullCurrencies(usd);
+  }
 }
 
 window.addEventListener("load", function() {
